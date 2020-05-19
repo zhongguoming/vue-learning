@@ -13,54 +13,15 @@
 
 <body>
     <div id='app'>
-        <ol>
-            <todo-item 
-                v-for="item in groceryList"
-                v-bind:todo="item"
-            >
-            <todo-item>
-        </ol>
+        <button v-bind:disabled='disabled'>按钮</button>
     </div>
 
     <script type="text/javascript">
-
-        Vue.component('todo-item', {
-            props: ['todo'],
-            template: '<li>{{todo.text}}</li>'
-        })
         var app = new Vue({
             el: '#app',
             data: {
-                groceryList: [
-                    { id: 0, text: '蔬菜' },
-                    { id: 1, text: '奶酪' },
-                    { id: 2, text: '随便其它什么人吃的东西' }
-                ]
+                disabled: true
             },
-            beforeCreate: function () {
-                console.log("beforeCreate");
-            },
-            created: function() {
-                console.log("created");
-            },
-            beforeMount: function () {
-                console.log("beforeMount");
-            },
-            mounted: function () {
-                console.log("mounted");
-            },
-            beforeUpdate: function () {
-                console.log("beforeUpdate");
-            },
-            updated: function () {
-                console.log("updated");
-            },
-            beforeDestory: function () {
-                console.log("beforeDestroy");
-            },
-            destoryed: function () {
-                console.log("destroyed");
-            }
         })
     </script>
 
