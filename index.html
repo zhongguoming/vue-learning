@@ -36,6 +36,30 @@
                     { id: 1, text: '奶酪' },
                     { id: 2, text: '随便其它什么人吃的东西' }
                 ]
+            },
+            beforeCreate: function () {
+                console.log("beforeCreate");
+            },
+            created: function() {
+                console.log("created");
+            },
+            beforeMount: function () {
+                console.log("beforeMount");
+            },
+            mounted: function () {
+                console.log("mounted");
+            },
+            beforeUpdate: function () {
+                console.log("beforeUpdate");
+            },
+            updated: function () {
+                console.log("updated");
+            },
+            beforeDestory: function () {
+                console.log("beforeDestroy");
+            },
+            destoryed: function () {
+                console.log("destroyed");
             }
         })
     </script>
