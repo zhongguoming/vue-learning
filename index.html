@@ -13,15 +13,25 @@
 
 <body>
     <div id='app'>
-        <p>{{message.split('').reverse().join('')}}</p>
+        <a v-bind:href="url">百度地址</a>
+        <a :href="url">百度地址</a>
+        <p>{{count}}</p>
+        <button v-on:click='addHandle'>加一</button>
+        <button @click='addHandle'>加一</button>
     </div>
 
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
             data: {
-                message: 'hello vue'
+                url: 'https://www.baidu.com',
+                count: 0
             },
+            methods: {
+                addHandle: function () {
+                    this.count = this.count + 1;
+                }
+            }
         })
     </script>
 
