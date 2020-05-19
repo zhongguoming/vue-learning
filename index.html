@@ -13,14 +13,14 @@
 
 <body>
     <div id='app'>
-        <button v-bind:disabled='disabled'>按钮</button>
+        <p>{{message.split('').reverse().join('')}}</p>
     </div>
 
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
             data: {
-                disabled: true
+                message: 'hello vue'
             },
         })
     </script>
