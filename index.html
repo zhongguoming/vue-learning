@@ -13,25 +13,21 @@
 
 <body>
     <div id='app'>
-        <a v-bind:href="url">百度地址</a>
-        <a :href="url">百度地址</a>
-        <p>{{count}}</p>
-        <button v-on:click='addHandle'>加一</button>
-        <button @click='addHandle'>加一</button>
+        <p>{{reversedMessage}}</p>
     </div>
 
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
             data: {
-                url: 'https://www.baidu.com',
-                count: 0
+                message: 'hello vue'
             },
-            methods: {
-                addHandle: function () {
-                    this.count = this.count + 1;
+            computed: {
+                reversedMessage: function() {
+                    return this.message.split('').reverse().join('')
                 }
             }
+           
         })
     </script>
 
