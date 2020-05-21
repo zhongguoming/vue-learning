@@ -22,14 +22,17 @@
             data: {
                 firstName: 'zhang',
                 secondName: 'san',
-                fullName:'zhang san'
             },
-            watch: {
-                firstName: function(val) {
-                    this.fullName = val + ' ' + this.secondName
-                },
-                secondName: function(val) {
-                    this.fullName = this.firstName + ' ' + val
+            computed: {
+                fullName: {
+                    get: function() {
+                        return this.firstName + ' ' + this.secondName
+                    },
+                    set: function(newValue) {
+                        var array = newValue.split(' ')
+                        this.firstName = array[0];
+                        this.secondName = array[array.length -1]
+                    }
                 }
             }
         })
