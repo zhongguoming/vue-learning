@@ -24,9 +24,16 @@
             },
             computed: {
                 reversedMessage: function() {
+                    console.log('reversedMessage')
                     return this.message.split('').reverse().join('')
                 }
-            }
+            },
+            // methods: {
+            //     reversedMessage: function() {
+            //         console.log('reversedMessage')
+            //         return this.message.split('').reverse().join('')
+            //     }
+            // }
            
         })
     </script>
