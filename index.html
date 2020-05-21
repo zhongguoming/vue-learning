@@ -13,28 +13,25 @@
 
 <body>
     <div id='app'>
-        <p>{{reversedMessage}}</p>
+        <p>{{fullName}}</p>
     </div>
 
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
             data: {
-                message: 'hello vue'
+                firstName: 'zhang',
+                secondName: 'san',
+                fullName:'zhang san'
             },
-            computed: {
-                reversedMessage: function() {
-                    console.log('reversedMessage')
-                    return this.message.split('').reverse().join('')
+            watch: {
+                firstName: function(val) {
+                    this.fullName = val + ' ' + this.secondName
+                },
+                secondName: function(val) {
+                    this.fullName = this.firstName + ' ' + val
                 }
-            },
-            // methods: {
-            //     reversedMessage: function() {
-            //         console.log('reversedMessage')
-            //         return this.message.split('').reverse().join('')
-            //     }
-            // }
-           
+            }
         })
     </script>
 
