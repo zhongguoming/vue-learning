@@ -8,36 +8,31 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <script src="vue.js" type="text/javascript" charset="utf-8"></script>
-
+    
 </head>
 
 <body>
     <div id='app'>
-        <p>{{fullName}}</p>
+        <!-- <div v-bind:class="{background-color:blue}">hello</div> -->
+        <div v-bind:class="{isActive: isActive}" style="width: 100px; height: 100px; text-align: center; vertical-align: center;">hello</div>
     </div>
 
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
             data: {
-                firstName: 'zhang',
-                secondName: 'san',
+                isActive: false,
+                // fontSize: 30,
+                // secondName: 'san',
             },
-            computed: {
-                fullName: {
-                    get: function() {
-                        return this.firstName + ' ' + this.secondName
-                    },
-                    set: function(newValue) {
-                        var array = newValue.split(' ')
-                        this.firstName = array[0];
-                        this.secondName = array[array.length -1]
-                    }
-                }
-            }
         })
     </script>
 
+    <style type="text/css">
+        .isActive{
+            background-color:#0000ff;
+        }
+    </style>
 </body>
 
 </html>
