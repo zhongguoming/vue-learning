@@ -13,16 +13,30 @@
 
 <body>
     <div id='app'>
-    <div v-if='isActive'>Vue is awesome!</div>
-    <div v-else>Oh no 😢</div>
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username" key='usename-key'>
+          </template>
+          <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key='email-key'>
+          </template>
+          <button @click='toggle'>toggle login type</button>
     </div>
 
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
             data: {
-                isActive: false,
+                isLogin: true,
+                loginType: 'username',
             },
+            methods: {
+                toggle: function() {
+                    this.isLogin = !this.isLogin;
+                    this.loginType = this.isLogin ? 'username' : 'emial'; 
+                }
+            }
         })
     </script>
 </body>
