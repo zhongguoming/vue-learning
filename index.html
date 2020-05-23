@@ -13,31 +13,28 @@
 
 <body>
     <div id='app'>
-        <template v-if="loginType === 'username'">
-            <label>Username</label>
-            <input placeholder="Enter your username" key='usename-key'>
-          </template>
-          <template v-else>
-            <label>Email</label>
-            <input placeholder="Enter your email address" key='email-key'>
-          </template>
-          <button @click='toggle'>toggle login type</button>
+        <button-item></button-item>
+        <button-item></button-item>
+        <button-item></button-item>
     </div>
 
     <script type="text/javascript">
-        var app = new Vue({
-            el: '#app',
-            data: {
-                isLogin: true,
-                loginType: 'username',
-            },
-            methods: {
-                toggle: function() {
-                    this.isLogin = !this.isLogin;
-                    this.loginType = this.isLogin ? 'username' : 'emial'; 
+        Vue.component('button-item',{
+            template:'<button v-on:click="count++"">click {{count}}</button>',
+            data: function() {
+                return {
+                    count: 0
                 }
             }
         })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                // count: 0
+            },
+        })
+        
     </script>
 </body>
 
