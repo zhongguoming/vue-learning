@@ -13,12 +13,10 @@
 
 <body>
     <div id='app'>
-        <div v-for='item in food'>
-            {{item.name}}
-        </div>
-        <div v-for='item in filterFood'>
-            {{item.name}}
-        </div>
+        <button v-on:click='greet(3,$event)'>
+            加
+        </button>
+        <div>{{count}}</div>
     </div>
 
     <script type="text/javascript">
@@ -27,23 +25,14 @@
         var app = new Vue({
             el: '#app',
             data: {
-                food: [
-                    {name: '青椒肉丝'},
-                    {name: '土豆丝'},
-                    {name: '西红柿鸡蛋'},
-                ]
-
+                count: 0
             },
-            computed: {
-                filterFood: function () {
-                    let nums = this.food;
-
-                    let res = nums.filter((item) => {
-                        console.log(item.name == '土豆丝')
-                        return item.name == '土豆丝';
-                    });
-                    console.log(res)
-                    return res
+            methods: {
+                greet: function(num,event) {
+                    this.count += num
+                    if (event) {
+                        console.log(event);
+                    }
                 }
             }
         })
