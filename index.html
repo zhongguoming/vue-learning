@@ -13,22 +13,31 @@
 
 <body>
     <div id='app'>
-        <blog-post v-for='item in posts' v-bind:key='item.id' v-bind:title='item.title'></blog-post>
+        <blog-post 
+            v-for='item in posts' 
+            v-bind:key='item.id' 
+            v-bind:post='item'>
+        </blog-post>
     </div>
 
     <script type="text/javascript">
 
         Vue.component('blog-post', {
-            props: ['title'],
-            template: '<h3>{{ title }}</h3>'
+            props: ['post'],
+            template: `
+                <div>
+                    <h3>{{ post.title }}</h3>
+                    <div v-html="post.content"></div>
+                    <h3>{{ post.date }}</h3>
+                </div>`
         })
         var app = new Vue({
             el: '#app',
             data: {
                 posts: [
-                    { id: 1, title: 'My journey with Vue' },
-                    { id: 2, title: 'Blogging with Vue' },
-                    { id: 3, title: 'Why Vue is so fun' }
+                    { id: 1, title: 'My journey with Vue', content: '<h2>博客一内容</h2>', date: '2012-9-23'},
+                    { id: 2, title: 'Blogging with Vue', content: '<h3>博客二内容</h3>', date: '2020-9-23'},
+                    { id: 3, title: 'Why Vue is so fun', content: '<h4>博客三内容</h4>', date: '2009-9-23'}
                 ]
             },
         })
