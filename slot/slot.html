@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <button-item>
+            <!-- <button>登录</button> -->
+        </button-item>
+        <button-item>
+            <!-- <span>恩 不错</span> -->
+        </button-item>
+        <button-item>
+            <button>登录</button>
+            <span>恩 不错</span>
+            <i>哈哈</i>
+        </button-item>
+    </div>
+
+    <script type="text/javascript">
+
+        Vue.component('button-item', {
+            template: `
+                <div> 
+                    <p>我是组件</P>
+                    <p>哈哈哈</P>
+                    <slot></slot>
+                </div>
+            `
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            
+        })
+    </script>
+</body>
+
+</html>
