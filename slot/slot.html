@@ -28,7 +28,7 @@
 
     <script type="text/javascript">
 
-        Vue.component('button-item', {
+        var ButtonItem = {
             template: `
                 <div> 
                     <p>我是组件</P>
@@ -36,12 +36,23 @@
                     <slot></slot>
                 </div>
             `
-        })
+        }
+        // Vue.component('button-item', {
+        //     template: `
+        //         <div> 
+        //             <p>我是组件</P>
+        //             <p>哈哈哈</P>
+        //             <slot></slot>
+        //         </div>
+        //     `
+        // })
         var app = new Vue({
             el: '#app',
             data: {
             },
-            
+            components: {
+                'button-item': ButtonItem
+            }
         })
     </script>
 </body>
