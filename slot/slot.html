@@ -14,15 +14,16 @@
 <body>
     <div id='app'>
         <button-item>
-            <!-- <button>登录</button> -->
-        </button-item>
-        <button-item>
-            <!-- <span>恩 不错</span> -->
-        </button-item>
-        <button-item>
-            <button>登录</button>
-            <span>恩 不错</span>
-            <i>哈哈</i>
+            <template v-slot:header>
+                头部
+            </template>
+            <!-- <template v-slot:default> -->
+                <div>中间title</div>
+                <div>中间content</div>
+            <!-- </template> -->
+            <template v-slot:footer>
+                尾部
+            </template>
         </button-item>
     </div>
 
@@ -31,21 +32,22 @@
         var ButtonItem = {
             template: `
                 <div> 
-                    <p>我是组件</P>
-                    <p>哈哈哈</P>
-                    <slot></slot>
+                    <header>
+                        <!-- 头部内容 -->
+                        <slot name='header'></slot>
+                    </header>
+                    <main>
+                        <!-- 主要内容 -->
+                        <slot></slot>
+                    </main>
+                    <footer>
+                        <!-- 尾部 -->
+                        <slot name='footer'></slot>
+                    </footer>
                 </div>
             `
         }
-        // Vue.component('button-item', {
-        //     template: `
-        //         <div> 
-        //             <p>我是组件</P>
-        //             <p>哈哈哈</P>
-        //             <slot></slot>
-        //         </div>
-        //     `
-        // })
+
         var app = new Vue({
             el: '#app',
             data: {
