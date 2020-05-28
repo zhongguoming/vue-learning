@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <button-item > 
+            <!-- 子组件的数据 planguans拿到 然后在父组件中使用-->
+            <!-- v-slot 引用slot对象 -->
+            <template v-slot="slot">
+                <!-- <span v-for='item in slot.data'>{{item}} *</span> -->
+                <span>{{slot.data.join(' = ')}} </span>
+            </template>
+        </button-item>
+
+        <button-item > 
+        </button-item>
+
+        <button-item > 
+        </button-item>
+    </div>
+
+    <template id='cnp'>
+        <div>
+            <slot v-bind:data='planguans'>
+                <ul>
+                    <li v-for='item in planguans'>{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+
+        var ButtonItem = {
+            template: '#cnp',
+            data: function() {
+                return {
+                    planguans: ['Objective-c','patyon','js','swift','dart','java']
+                } 
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            components: {
+                'button-item': ButtonItem
+            }
+        })
+    </script>
+</body>
+
+</html>
