@@ -17,6 +17,7 @@
         <cnp></cnp>
         <cnp></cnp>
         <cnp></cnp>
+        
     </div>
 
     <template id='cnp'>
@@ -29,23 +30,23 @@
     <script type="text/javascript">
         // 1.组件构造器
 
-        // var cnp = `
-        //     <div>
-        //         <h3>这是组件</h3>
-        //         <p>哈哈哈</p>
-        //     </div>
-        // `
-        // var cnpConstruct = Vue.extend({
-        //     template: cnp
-        // })
+        var cnp = `
+            <div>
+                <h3>这是组件</h3>
+                <p>哈哈哈</p>
+            </div>
+        `
+        var cnpConstruct = Vue.extend({
+            template: cnp
+        })
 
         // 2.组件注册，(全局注册)
         // Vue.component('cnp',cnpConstruct)
 
 
-        Vue.component('cnp',{
-            template: '#cnp'
-        })
+        // Vue.component('cnp',{
+        //     template: '#cnp'
+        // })
 
         var app = new Vue({
             el: '#app',
@@ -54,9 +55,11 @@
             },
             // (局部注册)
             components: {
-                'cnp': {
-                    template: '#cnp'
-                }
+                // 'cnp': {
+                //     template: '#cnp'
+                // }
+                cnp: cnpConstruct
+                
             }
         })
     </script>
