@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 3.使用组件 -->
+        <cnp></cnp>
+        <cnp></cnp>
+        <cnp></cnp>
+    </div>
+
+    <template id='cnp'>
+        <div>
+            <h3>这是组件</h3>
+            <p>哈哈哈</p>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+        // 1.组件构造器
+
+        // var cnp = `
+        //     <div>
+        //         <h3>这是组件</h3>
+        //         <p>哈哈哈</p>
+        //     </div>
+        // `
+        // var cnpConstruct = Vue.extend({
+        //     template: cnp
+        // })
+
+        // 2.组件注册，(全局注册)
+        // Vue.component('cnp',cnpConstruct)
+
+
+        Vue.component('cnp',{
+            template: '#cnp'
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            // (局部注册)
+            components: {
+                'cnp': {
+                    template: '#cnp'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
