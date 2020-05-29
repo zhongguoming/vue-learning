@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <cnp1></cnp1>
+        <cnp1></cnp1>
+        <cnp1></cnp1>
+    </div>
+
+    <template id='cnp1'>
+        <div>
+            <p>{{counter}}</p>
+            <button @click='add'> + </button>
+            <button @click='sub'> - </button>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+        // var counte = {
+        //     counter: 0
+        // }
+        var cnp = {
+            template: "#cnp1",
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                add: function() {
+                    this.counter ++;
+                },
+                sub: function() {
+                    this.counter --;
+                }
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            components: {
+                cnp1: cnp,
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        var obj =  {
+            name: 'cc'
+        }
+        function add() {
+            return obj
+        }
+
+        var obj1 = add()
+        var obj2 = add()
+        var obj3 = add()
+        obj1.name = 'chen'
+        console.log(obj1.name)
+        console.log(obj2.name)
+
+    </script>
+</body>
+
+</html>
