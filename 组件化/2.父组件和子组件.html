@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <cnp1></cnp1>
+    </div>
+
+    <template id='cnp1'>
+        <div>
+            <h3>这是父组件</h3>
+            <p>哈哈哈</p>
+            <div>
+                <p>------</p>
+                <cnp2></cnp2>
+            </div>
+        </div>
+    </template>
+
+    <template id='cnp2'>
+        <div>
+            <h3>这是子组件</h3>
+            <p>哈哈哈</p>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+        
+        var cnp2 = Vue.extend({
+            template: "#cnp2"
+        })
+
+        var cnp1 = Vue.extend({
+            template: "#cnp1",
+            components: {
+                cnp2: cnp2
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            components: {
+                cnp1: cnp1,
+            }
+        })
+    </script>
+</body>
+
+</html>
