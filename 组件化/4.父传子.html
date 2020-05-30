@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <cnp :movies='movies' :author='zhangSan' :c-message='message'></cnp>
+    </div>
+
+    <template id='cnp'>
+        <div>
+            <p>{{cMessage}}</p>
+            <ol>
+                <li v-for='item in movies'>
+                    {{item}}
+                </li>
+            </ol>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+        function Person (firstName, lastName) {
+            this.firstName = firstName
+            this.lastName = lastName
+        }
+
+        var cnp = {
+            template: "#cnp",
+            props: {
+                author: {
+                    type: Person
+                },
+                cMessage: {
+                    type: String,
+                    default: 'ni hao'
+                },
+                movies: {
+                    type: Array,
+                    default: function() {
+                        return ['小苹果']
+                    },
+                    required: true,
+                    validator: function(value) {
+                        console.log(value.length);
+                        return value.length > 0
+                    }
+                }
+            },
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+        }
+
+        var p1 = Person('zhang','san')
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'enen',
+                movies: ['变形金刚','小苹果','夜店','钢铁侠'],
+                zhangSan: p1
+            },
+            components: {
+                cnp,
+            }
+        })
+    </script>
+</body>
+
+</html>
