@@ -13,6 +13,7 @@
 
 <body>
     <div id='app'>
+        <p>{{message}}</p> 
         <cnp :movies='movies' :author='zhangSan' :c-message='message'></cnp>
     </div>
 
@@ -24,6 +25,7 @@
                     {{item}}
                 </li>
             </ol>
+            <button @click='changeMessage'></button>
         </div>
     </template>
 
@@ -60,6 +62,11 @@
                     counter: 0
                 }
             },
+            methods: {
+                changeMessage: function() {
+                    // this.cMessage = '888'
+                }
+            }
         }
 
         var p1 = Person('zhang','san')

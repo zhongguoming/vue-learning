@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <cnp v-on:click-categary='clickCategary'></cnp>
+        <p>{{category}}</p>
+    </div>
+
+    <template id='cnp'>
+        <div>
+            <button v-for='item in categaryes' @click='click(item)'>
+                {{item.name}}
+            </button>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+
+        var cnp = {
+            template: "#cnp",
+            props: {
+                
+            },
+            data: function () {
+                return {
+                    categaryes: [
+                        {id:'1', name:'变形金刚'},
+                        {id:'2', name:'小苹果'},
+                        {id:'3', name:'夜店'},
+                        {id:'4', name:'钢铁侠'}],
+                }
+            },
+            methods: {
+                click: function(item) {
+                    this.$emit('click-categary',item)
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                category: ''
+            },
+            components: {
+                cnp,
+            },
+            methods: {
+                clickCategary: function(item) {
+                    console.log('item',item)
+                    this.category = item.name
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
