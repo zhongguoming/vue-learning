@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <p>父组件{{num}}</p>
+        <cnp v-bind:num='num' v-on:change-num='change'></cnp>
+    </div>
+
+    <template id='cnp'>
+        <div>
+            <p>子组件{{num}}</p>
+            <p>{{dnum}}</p>
+            <input v-bind:value='dnum' v-on:input='change'></input>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+
+        var cnp = {
+            template: "#cnp",
+            props: {
+                num: {
+                    type: Number
+                }
+            },
+            data: function () {
+                return {
+                    dnum: this.num
+                }
+            },
+            methods: {
+                change: function(e) {
+                    console.log(e.target.value);
+                    this.dnum = e.target.value;
+                    var num = parseInt(e.target.value)
+                    this.$emit('change-num',num)
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            components: {
+                cnp,
+            },
+            methods: {
+                change: function(value) {
+                    console.log('value=',value)
+                    this.num = value
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
