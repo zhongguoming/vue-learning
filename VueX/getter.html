@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -8,12 +9,15 @@
     <script src="../vuex.js" type="text/javascript" charset="utf-8"></script>
     <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
 </head>
+
 <body>
     <div id='app'>
         <div>
-            <div >{{$store.state.counter}}</div>
-            <div>{{$store.getters.doubleCounter}}</div>
-            <button @click='click'> + </button>
+            <div>{{$store.state.students}}</div>
+            <div>{{$store.getters.moreThan20Students}}</div>
+            <div>{{$store.getters.moreThanStudents(16)}}</div>
+            <div>{{$store.getters.moreThan20StudentsCount}}</div>
+            <!-- <button @click='click'> + </button> -->
         </div>
     </div>
 
@@ -21,32 +25,46 @@
 
         const store = new Vuex.Store({
             state: {
-                counter: 1,
+                students: [
+                    { id: 110, name: '张三', age: 12 },
+                    { id: 111, name: '李四', age: 22 },
+                    { id: 112, name: '陈晨', age: 16 },
+                    { id: 113, name: '消息', age: 30 }
+                ],
             },
             getters: {
-                doubleCounter: function (state) {
-                    return  state.counter + state.counter
+                moreThan20Students: function (state) {
+                    return state.students.filter(s => s.age > 20)
+                },
+                moreThanStudents: function (state) {
+                    return function (num) {
+                        return state.students.filter(s => s.age > num)
+                    }
+                },
+                moreThan20StudentsCount: function (state, getter) {
+                    return getter.moreThan20Students.length
                 }
             },
-            mutations: {
-                increment (state) {
-                    console.log(state.counter)
-                    state.counter++
-                }
-            }
+            // mutations: {
+            //     increment (state) {
+            //         console.log(state.counter)
+            //         state.counter++
+            //     }
+            // }
         })
         var app = new Vue({
             el: '#app',
             store: store,
-            computed:{
+            computed: {
 
             },
-            methods: {
-                click: function() {
-                    this.$store.commit('increment')
-                }
-            }
+            // methods: {
+            //     click: function() {
+            //         this.$store.commit('increment')
+            //     }
+            // }
         })
     </script>
 </body>
+
 </html>
