@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="../vuex.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+    <div id='app'>
+        <div>
+            <div >{{$store.state.counter}}</div>
+            <div>{{$store.getters.doubleCounter}}</div>
+            <button @click='click'> + </button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        const store = new Vuex.Store({
+            state: {
+                counter: 1,
+            },
+            getters: {
+                doubleCounter: function (state) {
+                    return  state.counter + state.counter
+                }
+            },
+            mutations: {
+                increment (state) {
+                    console.log(state.counter)
+                    state.counter++
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            store: store,
+            computed:{
+
+            },
+            methods: {
+                click: function() {
+                    this.$store.commit('increment')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
