@@ -28,10 +28,10 @@
                     setTimeout(() => {
                         console.log('actions', payload);
                         context.commit('increment', payload.name)
+                        payload.success()
                     }, 1000)
                 }
-            }
-            ,
+            },
             mutations: {
                 increment(state, payload) {
                     console.log('mutations', payload)
@@ -47,7 +47,10 @@
                     // this.$store.commit('increment','lbw')
                     this.$store.dispatch({
                         type: 'incrementAsync',
-                        name: 'lbw'
+                        name: 'lbw',
+                        success: () => {
+                            console.log('成功了');
+                        }
                     })
                 }
             }
