@@ -25,11 +25,13 @@
             },
             actions: {
                 incrementAsync(context, payload) {
-                    setTimeout(() => {
-                        console.log('actions', payload);
-                        context.commit('increment', payload.name)
-                        payload.success()
-                    }, 1000)
+                    return new Promise((resove, reject) => {
+                        setTimeout(() => {
+                            console.log('actions', payload);
+                            context.commit('increment', payload.name)
+                            resove('1111')
+                        }, 1000)
+                    })
                 }
             },
             mutations: {
@@ -48,9 +50,8 @@
                     this.$store.dispatch({
                         type: 'incrementAsync',
                         name: 'lbw',
-                        success: () => {
-                            console.log('成功了');
-                        }
+                    }).then((result) => {
+                        console.log(result);
                     })
                 }
             }
